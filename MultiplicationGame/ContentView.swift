@@ -8,6 +8,15 @@
 import SwiftUI
 
 
+    func newQuestion(tableNum: Int) -> (String, Int) {
+    let randomm = Int.random(in: 1..<13)
+    
+    
+        return ("Your question is \(randomm) * \(tableNum)", randomm * tableNum)
+    }
+
+
+
 
 
 
@@ -18,9 +27,11 @@ struct ContentView: View {
    var numOfQuestions = ["5", "10", "15", "20"]
     
     let chosen = 2
-    @State private var multiplier = [1,2,3,4,5,6,7,8,9,10,11,12]
-    var questions = [0]
+    @State private var multiplier = Int.random(in: 1..<13)
+    @State private var question = ""
     @State var showText = false
+    @State private var answer = 0
+    @State private var results = 0
     
     
     
@@ -31,8 +42,8 @@ struct ContentView: View {
             Text("Multiplication game")
                 .padding()
                 .font(.largeTitle)
+              
             
-            Spacer()
             
             
                 Text("Multiplication Table: \(tableNumber)")
@@ -54,37 +65,49 @@ struct ContentView: View {
             
             
             
-            
-            
-            
-            
-            
-               
         
-            Spacer()
-            
+        
+        
+        VStack {
             Button("new question") {
-                showText = true
+               let resulto = newQuestion(tableNum: tableNumber)
+                question = resulto.0
+                results = resulto.1
                 
             }
-            if showText {
-                if let multiplierRandom = multiplier.randomElement() {
-                Text("Your question is \(multiplierRandom) * \(tableNumber)")
-                }
-            }
+           
                
+                    
+                    Text(question)
+            Text(String(results))
+                 
+            
+          
+            
+          
+            
+                
+            TextField("Your answer", value: $answer, format: .number)
+                .padding()
+                .keyboardType(.decimalPad)
+        
+               
+               
+           
                
                    
                 
-            Spacer()
             
-            
+}
             
         }
         
         
     }
+    
+    
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
