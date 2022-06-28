@@ -30,7 +30,7 @@ struct ContentView: View {
     @State private var multiplier = Int.random(in: 1..<13)
     @State private var question = ""
     @State var showText = false
-    @State private var answer = 0
+    @State private var answer: Int?
     @State private var results = 0
     @State private var submitText = ""
     @State private var showResult = false
@@ -75,7 +75,7 @@ struct ContentView: View {
                let resulto = newQuestion(tableNum: tableNumber)
                 question = resulto.0
                 results = resulto.1
-                answer = 0
+                
                 
             }
            
@@ -93,7 +93,7 @@ struct ContentView: View {
             TextField("Your answer", value: $answer, format: .number)
                 .padding()
                 .keyboardType(.decimalPad)
-                .frame(width: 100, alignment: .center)
+                .frame(width: 150, alignment: .center)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onSubmit {
                     if results == answer {
