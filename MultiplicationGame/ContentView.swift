@@ -93,6 +93,8 @@ struct ContentView: View {
             TextField("Your answer", value: $answer, format: .number)
                 .padding()
                 .keyboardType(.decimalPad)
+                .frame(width: 100, alignment: .center)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onSubmit {
                     if results == answer {
                     submitText =  "you got it"
@@ -102,6 +104,9 @@ struct ContentView: View {
                     
                     showResult = true
                 }
+            
+            
+            
             
             Button("Submit your answer") {
                 
