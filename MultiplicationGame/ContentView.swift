@@ -92,7 +92,7 @@ struct ContentView: View {
                 
             TextField("Your answer", value: $answer, format: .number)
                 .padding()
-                .keyboardType(.decimalPad)
+                .keyboardType(.numberPad)
                 .frame(width: 150, alignment: .center)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onSubmit {
