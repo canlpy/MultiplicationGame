@@ -32,6 +32,8 @@ struct ContentView: View {
     @State var showText = false
     @State private var answer = 0
     @State private var results = 0
+    @State private var submitText = ""
+    @State private var showResult = false
     
     
     
@@ -73,13 +75,14 @@ struct ContentView: View {
                let resulto = newQuestion(tableNum: tableNumber)
                 question = resulto.0
                 results = resulto.1
+                answer = 0
                 
             }
            
                
                     
                     Text(question)
-            Text(String(results))
+            
                  
             
           
@@ -90,6 +93,30 @@ struct ContentView: View {
             TextField("Your answer", value: $answer, format: .number)
                 .padding()
                 .keyboardType(.decimalPad)
+                .onSubmit {
+                    if results == answer {
+                    submitText =  "you got it"
+                    } else {
+                       submitText =  "try again"
+                    }
+                    
+                    showResult = true
+                }
+            
+            Button("Submit your answer") {
+                
+                if results == answer {
+                submitText =  "you got it"
+                } else {
+                   submitText =  "try again"
+                }
+                
+                showResult = true
+            }  // submit button
+            
+            if showResult {
+                Text(submitText)
+            }
         
                
                
